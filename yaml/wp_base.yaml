@@ -136,19 +136,6 @@ select:
 
 #########################################
 #                                       #
-#   Buttons                             #
-#                                       #
-#########################################
-button:
-  - platform: template
-    name: "Reset Filter"
-    on_press:
-        lambda: |-
-            sendData(Kessel, Property::kRESET_FILTER, 1U);
-            scheduleRequest(Kessel, Property::kFILTER_RUNTIME_TAGE, std::chrono::seconds(30));
-
-#########################################
-#                                       #
 #   Template Sensors                    #
 #                                       #
 #########################################
@@ -280,6 +267,8 @@ packages:
   VENT_LEVEL_DAY:                      !include { file: wp_ventilation.yaml, vars: { property: "VENT_LEVEL_DAY"     }}
   VENT_LEVEL_NIGHT:                    !include { file: wp_ventilation.yaml, vars: { property: "VENT_LEVEL_NIGHT"   }}
   VENT_LEVEL_PARTY:                    !include { file: wp_ventilation.yaml, vars: { property: "VENT_LEVEL_PARTY"   }}
+  VENT_LEVEL_STANDBY:                  !include { file: wp_ventilation.yaml, vars: { property: "VENT_LEVEL_STANDBY" }}
+  VENT_LEVEL_HAND:                     !include { file: wp_ventilation.yaml, vars: { property: "VENT_LEVEL_HAND" }}
 
   EXHAUST_AIR_HUMIDITY:                !include { file: wp_generic.yaml, vars: { property: "EXHAUST_AIR_HUMIDITY"            , update_interval: $interval_very_slow       , unit: "%"    , icon: "mdi:water-percent"}}
   MOTOR_CURRENT:                       !include { file: wp_generic.yaml, vars: { property: "MOTOR_CURRENT"            , update_interval: $interval_medium          , unit: "A"    , icon: "mdi:current-ac"}}
@@ -296,7 +285,7 @@ packages:
   SUPPLY_AIR_SETPOINT:                 !include { file: wp_generic.yaml, vars: { property: "SUPPLY_AIR_SETPOINT"      , update_interval: $interval_slow            , unit: "l/min", icon: "mdi:pump"  }}
   VOLUME_FLOW:                         !include { file: wp_generic.yaml, vars: { property: "VOLUME_FLOW"              , update_interval: $interval_slow            , unit: "l/min", icon: "mdi:pump"  }}
   FILTER_RUNTIME:                      !include { file: wp_generic.yaml, vars: { property: "FILTER_RUNTIME"          , update_interval: $interval_once_in_a_while , unit: "%"    , icon: "mdi:calendar"  }}
-  FILTER_RUNTIME_TAGE:                !include { file: wp_generic.yaml, vars: { property: "FILTER_RUNTIME_DAYS"     , icon: "mdi:air-filter" , unit: "d" , update_interval: $interval_once_in_a_while }}  
+  FILTER_RUNTIME_TAGE:                 !include { file: wp_generic.yaml, vars: { property: "FILTER_RUNTIME_DAYS"     , icon: "mdi:air-filter" , unit: "d" , update_interval: $interval_once_in_a_while }}  
   LOW_PRESSURE_DISPLAY:                !include { file: wp_generic.yaml, vars: { property: "LOW_PRESSURE_DISPLAY"      , accuracy_decimals: "2" }}
   PUMP_CYCLES_MIN_OUTSIDE_TEMP:        !include { file: wp_generic.yaml, vars: { property: "PUMP_CYCLES_MIN_OUTSIDE_TEMP" , icon: "mdi:numeric"  }}
   SETPOINT_MAX_HC1:                    !include { file: wp_generic.yaml, vars: { property: "SETPOINT_MAX_HC1"          , unit: "°C", icon: "mdi:temperature-celsius" , target: "HK1", accuracy_decimals: "1" }}
@@ -315,6 +304,7 @@ packages:
   VENT_EXHAUST_LEVEL1:                 !include { file: wp_number.yaml, vars: { property: "VENT_EXHAUST_LEVEL1", min: "0.0", max: "300.0", unit: "m³/h", icon: "mdi:air-filter"  }}
   VENT_EXHAUST_LEVEL2:                 !include { file: wp_number.yaml, vars: { property: "VENT_EXHAUST_LEVEL2", min: "0.0", max: "300.0", unit: "m³/h", icon: "mdi:air-filter"  }}
   VENT_EXHAUST_LEVEL3:                 !include { file: wp_number.yaml, vars: { property: "VENT_EXHAUST_LEVEL3", min: "0.0", max: "300.0", unit: "m³/h", icon: "mdi:air-filter"  }}
+  SUMMERMODE_TEMP:                     !include { file: wp_number.yaml, vars: { property: "SUMMERMODE_TEMP"         , min: "10.0", max: "25.0" , step: "0.5" , unit: "°C" , icon: "mdi:sun-thermometer"  }}
 
   HEAT_RECOVERY_DAY_TOTAL_KWH:         !include { file: wp_daily_energy_combined.yaml, vars: { sensor_name: "HEAT_RECOVERY_DAY_TOTAL_KWH"      , property_wh: "HEAT_RECOVERY_DAY_WH"  , property_kwh: "HEAT_RECOVERY_DAY_KWH"  }}
   HEAT_OUTPUT_2WE_DHW_DAY_TOTAL_KWH:   !include { file: wp_daily_energy_combined.yaml, vars: { sensor_name: "HEAT_OUTPUT_2WE_DHW_DAY_TOTAL_KWH"  , property_wh: "HEAT_OUTPUT_2WE_DHW_DAY_WH"   , property_kwh: "HEAT_OUTPUT_2WE_DHW_DAY_KWH"   }}
