@@ -129,6 +129,13 @@ button:
         - lambda: |-
             syncTime();
 
+  - platform: template
+    name: Reset Filter
+    on_press:
+        lambda: |-
+            sendData(Kessel, Property::kRESET_FILTER, 1U);
+            scheduleRequest(Kessel, Property::kFILTER_RUNTIME_DAYS, std::chrono::seconds(30));
+
 #########################################
 #                                       #
 #   Intervals                           #
