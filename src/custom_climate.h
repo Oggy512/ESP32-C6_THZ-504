@@ -3,12 +3,12 @@
 
 class CustomClimate : public Component, public Climate {
    public:
-    CustomClimate(std::set<ClimateMode> modes, std::set<ClimatePreset> presets,
+    CustomClimate(esphome::climate::ClimateModeMask modes, esphome::climate::ClimatePresetMask presets,
                   const std::vector<std::pair<const CanMember, const Property>> targetTemperatureProperties)
         : targetTemperatureProperties_(targetTemperatureProperties) {
-        traits_.set_supported_modes(std::move(modes));
-        traits_.set_supported_presets(std::move(presets));
-        traits_.set_supports_current_temperature(true);
+        traits_.set_supported_modes(modes);
+        traits_.set_supported_presets(presets);
+        traits_.add_feature_flags(climate::CLIMATE_SUPPORTS_CURRENT_TEMPERATURE);
         update_mode();
     }
 
@@ -99,8 +99,10 @@ class CustomClimate : public Component, public Climate {
 
     ClimateTraits traits() override { return traits_; }
 
-   private:
+   protected:
     climate::ClimateTraits traits_{};
+
+   private:
     const std::vector<std::pair<const CanMember, const Property>> targetTemperatureProperties_;
     bool isHeating{false};
     bool isCooling{false};
