@@ -1,14 +1,15 @@
-# OneESP32ToRuleThemAll - THZ504 Simplified
+# OneESP32ToRuleThemAll - THZ504 Simplified adapted
 
-This project is a simplified version derived from [OneESP32ToRuleThemAll](https://github.com/kr0ner/OneESP32ToRuleThemAll), specifically focused on controlling the **Tecalor THZ504** heat pump via CAN bus using an ESP32 board and Home Assistant.
+This project is a simplified version derived from [OneESP32ToRuleThemAll](https://github.com/kr0ner/OneESP32ToRuleThemAll) and [ESP32-C6_THZ-504](https://github.com/jss-devops01/ESP32-C6_THZ-504), specifically focused on controlling the **Tecalor THZ504** heat pump via CAN bus using an ESP32 board and Home Assistant.
 
 ## About
 
-This codebase has been streamlined from the original OneESP32ToRuleThemAll project to focus exclusively on the Tecalor THZ504 model, removing support for smart meters, water meters, and other heat pump variants to provide a cleaner, more targeted solution.
+This codebase has been streamlined, consolidated and adapted from the original OneESP32ToRuleThemAll and it's fork project to focus exclusively on the Tecalor THZ504 model, removing support for smart meters, water meters, and other heat pump variants to provide a cleaner, more targeted solution.
 
 ## Features:
 
   - **Tecalor THZ504 Heat Pump Control** via CAN bus using SN65HVD230 transceiver [https://www.amazon.de/dp/B00KM6XMXO]
+  - No need for a MCP2515, since ESP32 has a CAN controlloer build-in! Therefore, only a CAN transceiver is needed.
   - Complete climate control (heating, cooling, hot water)
   - Energy monitoring (daily/total consumption, COP calculations)
   - Ventilation control with multiple speed levels
@@ -42,7 +43,7 @@ This codebase has been streamlined from the original OneESP32ToRuleThemAll proje
    - Clone or copy this repository
    - Use `esp32-c6-thz504.yaml` as your main configuration file
    - Update `secrets.yaml` with your WiFi credentials and API keys
-   - Modify Home Assistant entity IDs in `common.yaml` for room temperature and humidity sensors
+   - Modify Home Assistant entity IDs in `common.yaml` for room temperature and humidity sensors. This is only needed, if you desire to control the heatpump operation based on HA sensor values instead of the internal THZ logic. 
 
 3. **Home Assistant Integration:**
    - Install ESPHome add-on if not already installed
@@ -100,12 +101,13 @@ This version is specifically configured for THZ504 with:
 
 ## Credits & Acknowledgments
 
-This project is **derived from** [OneESP32ToRuleThemAll](https://github.com/kr0ner/OneESP32ToRuleThemAll) by [@kr0ner](https://github.com/kr0ner) and has been simplified to focus specifically on the **Tecalor THZ504** heat pump model.
+This project is **derived from** [OneESP32ToRuleThemAll](https://github.com/kr0ner/OneESP32ToRuleThemAll) by [@kr0ner](https://github.com/kr0ner) and [ESP32-C6_THZ-504](https://github.com/jss-devops01/ESP32-C6_THZ-504) by [jss-devops01](https://github.com/jss-devops01) and has been adapted to my personal needs.
 
 **Original project inspiration:**
 - [OneESP32ToRuleThemAll](https://github.com/kr0ner/OneESP32ToRuleThemAll) - The comprehensive multi-device ESP32 solution
 - Home Assistant Community Forum: [Configured my ESPHome with MCP2515 CAN bus for Stiebel Eltron heating pump](https://community.home-assistant.io/t/configured-my-esphome-with-mcp2515-can-bus-for-stiebel-eltron-heating-pump/366053)
 - [ha-stiebel-control](https://github.com/bullitt186/ha-stiebel-control) by [@bullitt186](https://github.com/bullitt186)
+- [OneESP32ToRuleThemAll](https://github.com/kr0ner/OneESP32ToRuleThemAll)
 
 **Special thanks to:**
 - [@kr0ner](https://github.com/kr0ner) for the original comprehensive implementation
@@ -113,8 +115,10 @@ This project is **derived from** [OneESP32ToRuleThemAll](https://github.com/kr0n
 - The Home Assistant and ESPHome communities for their ongoing support
 
 ## License
-
 This project maintains the same license as the original OneESP32ToRuleThemAll project.
 
 ### Useful links
-https://www.stiebel-eltron.de/content/dam/ste/cdbassets/historic/bedienungs-_u_installationsanleitungen/ISG_Modbus__b89c1c53-6d34-4243-a630-b42cf0633361.pdf
+https://www.tecalor.de/de/produkte/waermepumpe/luft-wasser-waermepumpen/thz-504.html#downloads
+https://www.tecalor.de/de/produkte/smart-home/isg-servicewelt.html
+
+https://community.home-assistant.io/t/configured-my-esphome-with-mcp2515-can-bus-for-stiebel-eltron-heating-pump/366053
