@@ -6,6 +6,3 @@ esphome:
 packages:
   COMMON: !include { file: common.yaml }
   BASE:   !include { file: wp_base.yaml }
-
-  EXHAUST_AIR_DEWPOINT: !include { file: wp_temperature.yaml, vars: { property: "EXHAUST_AIR_DEWPOINT" }}
-  DIFFERENTIAL_PRESSURE:       !include { file: wp_generic.yaml, vars: { property: "DIFFERENTIAL_PRESSURE"      , icon: "mdi:air-filter", unit: "Pa", update_interval: $interval_medium          }}
