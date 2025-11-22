@@ -35,8 +35,11 @@ substitutions:
   espclient_can_id: "0x6a2"
 
   # Home Assistant entities
-  entity_room_temperature: "sensor.tna"
-  entity_humidity: "sensor.hna"
+  entity_room_temperature: "sensor.temperatur_haus_mittel"
+  entity_humidity: "sensor.luftfeuchtigkeit_haus_mittel"
+  #entity_room_temperature: "sensor.tna" # Use not existing id to turn off overwriting Room_Temp_Actual
+  #entity_humidity: "sensor.hna"         # Use not existing id to turn off overwriting Room_Humidity_Actual
+
 
 #########################################
 #                                       #
@@ -142,7 +145,7 @@ button:
 #                                       #
 #########################################
 interval:
-  - interval: 750ms #Default: 250ms
+  - interval: 750ms #Default: 250ms, change to 750ms since FEK was unresponsive presumably of flooded CAN bus
     then:
       - lambda: |-
           // Request sensor value one after another.
