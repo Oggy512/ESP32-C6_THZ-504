@@ -248,3 +248,4 @@ void sendData(const CanMember& member, const Property property, const std::uint1
 }
 
 #endif
+    
