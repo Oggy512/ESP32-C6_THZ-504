@@ -174,9 +174,9 @@ struct Property : public oe32trta::detail::Property {
     PROPERTY(DIFFERENTIAL_PRESSURE, 0xc11e);
     PROPERTY(BETRIEBS_STATUS_2, 0xc356);
     PROPERTY(ZEITSPERRE_NE, 0x0588);
+	
+	PROPERTY(FIRMWARE_VERSION, 0x019a), Type::et_cent_val;
 #endif
-
-
 
 };
 
