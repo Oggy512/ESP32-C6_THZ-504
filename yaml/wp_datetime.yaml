@@ -57,3 +57,4 @@ text_sensor:
     name: "HEATPUMP_DATETIME"
     id: HEATPUMP_DATETIME
     update_interval: never
+  
