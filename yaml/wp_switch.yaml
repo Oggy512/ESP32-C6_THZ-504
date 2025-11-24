@@ -27,3 +27,4 @@ esphome:
               id(${property}).publish_state(value);
           });
           queueRequest(${target}, Property::k${property});
+  
