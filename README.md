@@ -9,7 +9,7 @@ This codebase has been streamlined, consolidated and adapted from the original O
 ## Features:
 
   - **Tecalor THZ504 Heat Pump Control** via CAN bus using SN65HVD230 transceiver [https://www.amazon.de/dp/B00KM6XMXO]
-  - No need for a MCP2515, since ESP32 has a CAN controlloer build-in! Therefore, only a CAN transceiver is needed.
+  - No need for a MCP2515, since ESP32 has a CAN controller build-in! Therefore, only a CAN transceiver is needed.
   - Complete climate control (heating, cooling, hot water)
   - Energy monitoring (daily/total consumption, COP calculations)
   - Ventilation control with multiple speed levels
@@ -27,6 +27,7 @@ This codebase has been streamlined, consolidated and adapted from the original O
   - ESP32-C6-Zero board
   - SN65HVD230 CAN bus transceiver module [https://www.amazon.de/dp/B00KM6XMXO]
   - Tecalor THZ504 heat pump with CAN bus interface
+  - J-Y(St)Y 2x2 cable
 
 ## Setup Instructions:
 
@@ -36,7 +37,7 @@ This codebase has been streamlined, consolidated and adapted from the original O
      - RX: GPIO4
      - VCC: 3.3V
      - GND: GND
-     - Connect CAN H/L to your THZ504's CAN bus
+     - Connect CAN H/L to your THZ504's CAN bus (panel XD04) with a J-Y(St)Y 2x2 cable
 
 2. **ESPHome Configuration:**
    - Navigate to your ESPHome folder
@@ -53,7 +54,7 @@ This codebase has been streamlined, consolidated and adapted from the original O
 
 ## Project Structure
 
-- **`esp32-c6-thz504.yaml`** - Main ESP32-C6-Zero configuration file
+- **`esp32-thz504.yaml`** - Main ESP32-C6-Zero configuration file
 - **`yaml/thz504.yaml`** - THZ504-specific sensor definitions
 - **`yaml/common.yaml`** - Common CAN bus and core functionality (configured for SN65HVD230)
 - **`yaml/wp_base.yaml`** - Base heat pump sensors and climate entities
@@ -83,7 +84,7 @@ This version is specifically configured for THZ504 with:
 ## Troubleshooting
 
 ### Heat Pump Control Issues
-- Increase log level to DEBUG in your YAML configuration
+- Increase log level to VEARBOSE in your YAML configuration
 - Check CAN bus wiring (CAN H/L connections)
 - Verify CAN bus termination resistors are properly installed
 - Monitor CAN traffic using the built-in logging
