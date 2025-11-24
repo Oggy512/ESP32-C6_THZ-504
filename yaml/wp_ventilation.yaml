@@ -46,3 +46,4 @@ esphome:
               }
           });
           queueRequest(Kessel, Property::k${property});
+  
